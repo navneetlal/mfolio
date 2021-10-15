@@ -6,6 +6,7 @@ import Scheme from './scheme';
 
 interface FolioInstance extends Model {
   folioNumber: number
+  investorId: number,
   amc: string
   pan: string
   kyc: boolean
@@ -15,6 +16,10 @@ interface FolioInstance extends Model {
 const Folio = database.define<FolioInstance>('Folio', {
   folioNumber: {
     type: DataTypes.STRING,
+    allowNull: false
+  },
+  investorId: {
+    type: DataTypes.INTEGER,
     allowNull: false
   },
   amc: {

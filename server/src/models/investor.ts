@@ -5,6 +5,7 @@ import type { Model } from 'sequelize';
 import Folio from './folio';
 
 interface InvestorInstance extends Model {
+  investorId: number,
   name: string
   email: string
   address: string
@@ -12,6 +13,12 @@ interface InvestorInstance extends Model {
 }
 
 const Investor = database.define<InvestorInstance>('Investor', {
+  investorId: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false
+  },
   name: {
     type: DataTypes.STRING,
     allowNull: false
