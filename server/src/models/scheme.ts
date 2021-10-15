@@ -2,25 +2,18 @@ import { DataTypes } from 'sequelize';
 import database from '../database';
 
 import type { Model } from 'sequelize';
-import Folio from './folio';
 import Transaction from './transactions';
 import Nav from './nav';
+import Valuation from './valuation';
 
 interface SchemeInstance extends Model {
   folioNumber: number
-  amfi: string
+  amfi: number
   name: string
   type: string
   advisor: string
   rtaCode: string
   rta: string
-  valuation: {
-    date: Date
-    amount: number
-    value: number
-    nav: number
-    balance: number
-  }
 }
 
 const Scheme = database.define<SchemeInstance>('Scheme', {
@@ -29,7 +22,7 @@ const Scheme = database.define<SchemeInstance>('Scheme', {
     allowNull: false
   },
   amfi: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false
   },
   name: {
@@ -50,10 +43,6 @@ const Scheme = database.define<SchemeInstance>('Scheme', {
   },
   rta: {
     type: DataTypes.STRING,
-    allowNull: false
-  },
-  valuation: {
-    type: DataTypes.JSON,
     allowNull: false
   }
 }, {
@@ -78,5 +67,10 @@ Scheme.hasMany(Nav, {
   foreignKey: 'amfi'
 })
 Nav.belongsTo(Scheme)
+
+Scheme.hasOne(Valuation, {
+  onDelete: 'CASCADE',
+  foreignKey: 'amfi'
+})
 
 export default Scheme

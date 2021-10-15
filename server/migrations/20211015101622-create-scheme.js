@@ -38,10 +38,6 @@ module.exports = {
             type: Sequelize.STRING(20),
             allowNull: false
           },
-          valuation: {
-            type: Sequelize.JSON,
-            allowNull: false
-          },
           created_at: {
             allowNull: false,
             type: Sequelize.DATE

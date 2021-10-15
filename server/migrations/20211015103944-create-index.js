@@ -19,6 +19,11 @@ module.exports = {
           unique: true,
           transaction
         }),
+        queryInterface.addIndex('Valuations', ['amfi'], {
+          fields: ['amfi'],
+          unique: true,
+          transaction
+        }),
         queryInterface.addIndex('Transactions', ['amfi'], {
           fields: ['amfi'],
           unique: false,

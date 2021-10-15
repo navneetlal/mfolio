@@ -22,6 +22,15 @@ module.exports = {
           onUpdate: 'CASCADE',
           onDelete: 'CASCADE',
         }, { transaction }),
+        queryInterface.changeColumn('Valuations', 'amfi', {
+          type: Sequelize.INTEGER,
+          references: {
+            model: 'Schemes',
+            key: 'amfi',
+          },
+          onUpdate: 'CASCADE',
+          onDelete: 'CASCADE',
+        }, { transaction }),
         queryInterface.changeColumn('Transactions', 'amfi', {
           type: Sequelize.INTEGER,
           references: {
